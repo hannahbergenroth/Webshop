@@ -1,5 +1,5 @@
 # TDDD27_2020_webshop
-Christofer Paulusson and Hannah Bergenroth
+Christofer Paulusson, Hannah Bergenroth
 
 Functional Specification
 
@@ -9,3 +9,4 @@ We want to create an online shop, including functions like logging in and paymen
 Technical specifications
 
 We will be using the MERN stack (MongoDB Express React Node) for this project.
+
