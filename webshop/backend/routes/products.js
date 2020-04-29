@@ -11,8 +11,9 @@ router.route("/add").post((req, res) => {
   const name = req.body.name;
   const description = req.body.description;
   const price = Number(req.body.price);
+  const imageUrl = req.body.imageUrl;
 
-  const newProduct = new Product({ name, description, price });
+  const newProduct = new Product({ name, description, price, imageUrl });
 
   newProduct
     .save()

@@ -21,15 +21,32 @@ export default function Example() {
     try {
       setLoading(true);
       const res = await axios.post(url, formData);
+
       const imageUrl = res.data.secure_url;
-      const image = await axios.post("http://localhost:5000/images/upload", {
-        imageUrl,
-      });
-      setLoading(false);
-      setImage(image.data);
+
+      const newProduct = {
+        name: title,
+        description: description,
+        price: price,
+        imageUrl: imageUrl,
+      };
+
+      console.log(newProduct);
+
+      axios
+        .post("http://localhost:5000/products/add", newProduct)
+        .then((res) => console.log(res.data));
+
+      // console.log(imageUrl, title, price, description);
+      // await axios.post("http://localhost:5000/products/add", newProduct);
+      // setLoading(false);
     } catch (err) {
       console.error(err);
     }
+    setTitle("");
+    setPrice("");
+    setDescription("");
+    setImage("");
   };
 
   const handleTitle = (e) => {
@@ -90,7 +107,11 @@ export default function Example() {
           <label className="custom-file-label">Choose image</label>
         </div>
       </div>
-      <button type="submit" className="btn btn-primary" onClick={onSubmit}>
+      <button
+        type="submit"
+        className="btn btn-primary w-100"
+        onClick={onSubmit}
+      >
         Create
       </button>
     </div>

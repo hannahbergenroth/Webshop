@@ -7,6 +7,9 @@ const Product = (props) => (
     <td>{props.product.name}</td>
     <td>{props.product.description}</td>
     <td>{props.product.price}</td>
+    <td>
+      <img src={props.product.imageUrl} width="50" alt="hej" />
+    </td>
 
     <td>
       <Link to={"/product/" + props.product._id}>Open</Link> |{" "}
@@ -18,9 +21,6 @@ const Product = (props) => (
       >
         delete
       </a>
-    </td>
-    <td>
-      <img src={props.product.file} alt="hej" />
     </td>
   </tr>
 );
@@ -75,8 +75,8 @@ export default class ShowProduct extends Component {
               <th>Name</th>
               <th>Description</th>
               <th>Price</th>
-              <th>Option</th>
               <th>Image</th>
+              <th>Option</th>
             </tr>
           </thead>
           <tbody>{this.exerciseList()}</tbody>

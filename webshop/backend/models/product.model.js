@@ -18,6 +18,9 @@ const productSchema = new Schema(
     price: {
       type: Number,
     },
+    imageUrl: {
+      type: String,
+    },
   },
   {
     timestamps: true,
