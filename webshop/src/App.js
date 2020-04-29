@@ -8,6 +8,12 @@ import ShowProduct from "./components/productpage.component";
 import Product from "./components/product.component";
 import CreateProduct from "./components/create-product.component";
 
+//import React, { useState, useEffect } from 'react';
+//import axios from 'axios';
+//import loadingGif from './spinner.gif';
+const url = "https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
+const preset = "ml_default";
+
 function App() {
   return (
     <React.Fragment>
