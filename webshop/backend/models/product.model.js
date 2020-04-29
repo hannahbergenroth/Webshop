@@ -18,6 +18,9 @@ const productSchema = new Schema(
     price: {
       type: Number,
     },
+    file: {
+      type: String,
+    },
   },
   {
     timestamps: true,

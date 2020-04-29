@@ -6,8 +6,10 @@ export default class CreateUser extends Component {
     super(props);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
     this.state = {
       username: "",
+      file: null,
     };
   }
   onChangeUsername(e) {
@@ -16,10 +18,15 @@ export default class CreateUser extends Component {
     });
   }
 
+  onChangeImage = (e) => {
+    this.setState({ file: URL.createObjectURL(e.target.files[0]) });
+  };
+
   onSubmit(e) {
     e.preventDefault();
     const newUser = {
       username: this.state.username,
+      file: this.state.file,
     };
     console.log(newUser);
 
@@ -29,6 +36,7 @@ export default class CreateUser extends Component {
 
     this.setState({
       username: "",
+      file: null,
     });
   }
 
@@ -46,6 +54,9 @@ export default class CreateUser extends Component {
               value={this.state.username}
               onChange={this.onChangeUsername}
             />
+          </div>
+          <div className="form-group">
+            <input type="file" onChange={this.onChangeImage} />
           </div>
           <div className="form-group">
             <input

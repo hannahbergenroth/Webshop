@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 //import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
 import axios from "axios";
+import img from "./hejj.png";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import { Carousel } from "react-responsive-carousel";
 
 class Product extends Component {
   constructor(props) {
     super(props);
-
+    this.handleClick = this.handleClick.bind(this);
     this.state = { name: "", description: "", price: 0 };
   }
+
+  handleClick = (e) => {
+    console.log(e.name);
+  };
 
   componentDidMount() {
     axios
@@ -25,7 +34,27 @@ class Product extends Component {
   }
 
   render() {
-    return <div>HEJ WORLDx h {this.state.name} </div>;
+    return (
+      <React.Fragment>
+        <h2>{this.state.name}</h2>
+        <div className="row">
+          <Carousel className="w-50">
+            <div>
+              <img src={img} />
+            </div>
+            <div>
+              <img src={img} />
+            </div>
+            <div>
+              <img src={img} />
+            </div>
+          </Carousel>
+          <div className="w-50 p-3">
+            <span>{this.state.description}</span>
+          </div>
+        </div>
+      </React.Fragment>
+    );
   }
 }
 

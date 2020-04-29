@@ -12,8 +12,8 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <div className="container">
-          <Navbar />
+        <Navbar />
+        <div className="mx-sm-5">
           <br />
           <Route path="/create" component={CreateProduct} />
           <Route path="/products" component={ShowProduct} />
