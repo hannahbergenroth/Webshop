@@ -4,17 +4,20 @@ const url = "	https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
 const preset = "default";
 
 export default function Example() {
+  const [test, settest] = useState("Choose image");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0].name);
+    settest(e.target.files[0].name);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", preset);
@@ -47,6 +50,7 @@ export default function Example() {
     setPrice("");
     setDescription("");
     setImage("");
+    settest("Choose image");
   };
 
   const handleTitle = (e) => {
@@ -71,6 +75,7 @@ export default function Example() {
             type="text"
             className="form-control"
             placeholder="Title"
+            required
             value={title}
             onChange={handleTitle}
           />
@@ -80,6 +85,7 @@ export default function Example() {
             type="number"
             className="form-control"
             placeholder="Price"
+            required
             value={price}
             onChange={handlePrice}
           />
@@ -91,6 +97,7 @@ export default function Example() {
           rows="5"
           id="comment"
           placeholder="Description"
+          required
           value={description}
           onChange={handleDescription}
         ></textarea>
@@ -104,7 +111,9 @@ export default function Example() {
             id="customFile"
             onChange={onChange}
           />
-          <label className="custom-file-label">Choose image</label>
+          <label className="custom-file-label" value="dhde">
+            {test}
+          </label>
         </div>
       </div>
       <button

@@ -13,10 +13,12 @@ const productSchema = new Schema(
     },
     description: {
       type: String,
+      required: true,
       trim: true,
     },
     price: {
       type: Number,
+      required: true,
     },
     imageUrl: {
       type: String,
