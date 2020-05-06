@@ -7,6 +7,8 @@ import CreateUser from "./components/create-user.component";
 import ShowProduct from "./components/productpage.component";
 import Product from "./components/product.component";
 import CreateProduct from "./components/create-product.component";
+import Register from "./components/auth/register.component";
+import Login from "./components/auth/login.component";
 
 //import React, { useState, useEffect } from 'react';
 //import axios from 'axios';
@@ -25,6 +27,8 @@ function App() {
           <Route path="/products" component={ShowProduct} />
           <Route path="/user" component={CreateUser} />
           <Route path="/product/:id" component={Product} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     </React.Fragment>
