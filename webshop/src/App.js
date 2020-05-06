@@ -7,6 +7,7 @@ import CreateUser from "./components/create-user.component";
 import ShowProduct from "./components/productpage.component";
 import Product from "./components/product.component";
 import CreateProduct from "./components/create-product.component";
+import Home from "./components/homepage";
 
 //import React, { useState, useEffect } from 'react';
 //import axios from 'axios';
@@ -21,10 +22,11 @@ function App() {
         <Navbar />
         <div className="mx-sm-5">
           <br />
+          <Route exact path="/" component={Home} />
           <Route path="/create" component={CreateProduct} />
-          <Route path="/products" component={ShowProduct} />
+          <Route exact path="/products" component={ShowProduct} />
           <Route path="/user" component={CreateUser} />
-          <Route path="/product/:id" component={Product} />
+          <Route path="/products/:id" component={Product} />
         </div>
       </Router>
     </React.Fragment>

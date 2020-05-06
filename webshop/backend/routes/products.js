@@ -2,7 +2,14 @@ const router = require("express").Router();
 let Product = require("../models/product.model");
 
 router.route("/").get((req, res) => {
+  const pageOptions = {
+    page: parseInt(req.query.page, 10) || 0,
+    limit: parseInt(req.query.limit, 10) || 5,
+  };
+
   Product.find()
+    //.skip(pageOptions.page * pageOptions.limit)
+    //.limit(pageOptions.limit)
     .then((products) => res.json(products))
     .catch((err) => res.status(400).json("Error: " + err));
 });
