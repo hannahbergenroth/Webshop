@@ -3,38 +3,45 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
 //import Pagination from "react-js-pagination";
+import bild from "./bild1.png";
 
 const Product = (props) => (
   //<tr>
   //<td className="w-20">{props.product.name}</td>
-
-  <div
-    className="text-center"
-    style={{ display: "inline-block" }}
-    className="m-4 card"
-    style={{ height: "24rem", width: "16rem", display: "inline-block" }}
-  >
-    <img
-      src={props.product.imageUrl}
-      style={{ height: "14rem" }}
-      className="card-img-top"
-      alt="..."
-    />
-    <div className="card-body">
-      <h5 className="card-title">{props.product.name}</h5>
-      <p className="card-text">{props.product.description}</p>
-
-      <Link to={"/products/" + props.product._id}>
-        <a
-          href="#"
-          className="btn btn-dark stretched-link"
-          style={{ margin: "auto", display: "block" }}
+  <Link to={"/products/" + props.product._id}>
+    <div
+      className=""
+      style={{
+        height: "429px",
+        width: "276px",
+        display: "inline-block",
+        padding: "3px",
+      }}
+    >
+      <img
+        src={props.product.imageUrl}
+        style={{ height: "368px" }}
+        className="card-img-top"
+        alt="..."
+      />
+      <div className="card-body" style={{ padding: "0" }}>
+        <p
+          className=""
+          style={{
+            color: "#333333",
+            marginTop: "8px",
+            marginBottom: "0",
+            textAlign: "left",
+          }}
         >
-          Go somewhere
-        </a>
-      </Link>
+          {props.product.name}
+        </p>
+        <p className="" style={{ color: "#777777", textAlign: "left" }}>
+          EUR {props.product.price}
+        </p>
+      </div>
     </div>
-  </div>
+  </Link>
 
   //<td className="w-20">{props.product.description}</td>
   // <td className="w-20">{props.product.price}</td>
@@ -222,6 +229,11 @@ export default class ShowProduct extends Component {
           value={number}
           className="mx-1 btn btn-outline-dark"
           onClick={this.handleClick}
+          style={{
+            float: "left",
+            backgroundColor: "white",
+            color: "black",
+          }}
         >
           {number}
         </button>
@@ -229,89 +241,50 @@ export default class ShowProduct extends Component {
     });
 
     return (
-      <div>
-        <h3>Products</h3>
+      <div className=" container">
+        <div
+          class="jumbotron jumbotron-fluid"
+          style={{ height: "330px", padding: "0" }}
+        >
+          <img src={bild} alt="" style={{ width: "100%" }} />
+        </div>
         {renderPageNumbers}
         <div className="container w-50 my-3 text-center">
-          <div className="p-1 form-check form-check-inline">
+          <label name="control-label">Show number of products: </label>
+
+          <label>
             <input
-              className=" form-check-input"
+              className="with-gap form-check-input"
+              name="group1"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value={2}
-              onChange={this.handleChangea}
-            />
-            <label className="form-check-label" htmlFor="inlineRadio1">
-              2
-            </label>
-          </div>
-          <div className="p-1 form-check form-check-inline">
-            <input
-              className=" form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
               value={5}
               onChange={this.handleChangea}
             />
-            <label className="form-check-label" htmlFor="inlineRadio2">
-              5
-            </label>
-          </div>
-          <div className="p-1 form-check form-check-inline">
+            <span>5</span>
+          </label>
+
+          <label>
             <input
-              className="form-check-input"
+              className="with-gap form-check-input"
+              name="group1"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio3"
               value={10}
               onChange={this.handleChangea}
             />
-            <label className="form-check-label" htmlFor="inlineRadio3">
-              10
-            </label>
-          </div>
-        </div>
+            <span style={{ paddingLeft: "-10px" }}>10</span>
+          </label>
 
-        <div className="dropdown">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Dropdown button
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" href="#">
-              2
-            </a>
-            <a className="dropdown-item" href="#">
-              5
-            </a>
-            <a className="dropdown-item" href="#">
-              10
-            </a>
-          </div>
+          <label>
+            <input
+              className="with-gap form-check-input"
+              name="group1"
+              type="radio"
+              value={20}
+              onChange={this.handleChangea}
+            />
+            <span style={{ margin: "0" }}>20</span>
+          </label>
         </div>
-
-        <table className="table">
-          {" "}
-          <thead className="thead-light">
-            {" "}
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Image</th>
-              <th>Option</th>{" "}
-            </tr>{" "}
-          </thead>
-          <tbody></tbody>{" "}
-        </table>
 
         <div style={{ textAlign: "center" }}>{renderproducts}</div>
       </div>

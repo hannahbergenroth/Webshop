@@ -61,8 +61,14 @@ class Register extends Component {
               <h4>
                 <b>Register</b> below
               </h4>
-              <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+              <p
+                className="grey-text text-darken-1"
+                style={{ color: "#26A69A" }}
+              >
+                Already have an account?{" "}
+                <Link to="/login" style={{ color: "#26A69A" }}>
+                  Log in
+                </Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -122,13 +128,14 @@ class Register extends Component {
                 <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12 " style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
                     marginTop: "1rem",
-                    backgroundcolor: "#26A69A",
+                    backgroundColor: "#26A69A",
+                    color: "#ffffff",
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light w-100"

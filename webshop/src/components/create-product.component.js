@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 const url = "	https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
 const preset = "default";
 
@@ -14,6 +15,7 @@ export default function Example() {
   const onChange = (e) => {
     setImage(e.target.files[0]);
     settest(e.target.files[0].name);
+    console.log("fffff");
   };
 
   const onSubmit = async (e) => {
@@ -63,62 +65,85 @@ export default function Example() {
 
   const handleDescription = (e) => {
     setDescription(e.target.value);
-    console.log(title, price, image);
   };
 
   return (
-    <div className="container w-50 text-center">
-      <h1 className="">Create Product</h1>
+    <div className="container w-50">
+      <div style={{ marginTop: "4rem" }} className="row"></div>
+      <h4>
+        <b>Create</b> product
+      </h4>
       <div className="form-row">
-        <div className="form-group col-md-6">
+        <div className="input-field col s12">
           <input
             type="text"
             className="form-control"
-            placeholder="Title"
             required
             value={title}
             onChange={handleTitle}
           />
+          <label htmlFor="title">Title</label>
+          <span className="red-text"></span>
         </div>
-        <div className="form-group col-md-6" placeholder="Price">
+
+        <div className="input-field col s12">
           <input
             type="number"
             className="form-control"
-            placeholder="Price"
             required
             value={price}
             onChange={handlePrice}
           />
+          <label htmlFor="title">Price</label>
+          <span className="red-text"></span>
         </div>
       </div>
-      <div className="form-group">
-        <textarea
-          className="form-control"
-          rows="5"
-          id="comment"
-          placeholder="Description"
-          required
-          value={description}
-          onChange={handleDescription}
-        ></textarea>
-      </div>
-      <div className="form-group">
-        <div className="custom-file">
-          <input
-            type="file"
-            name="image"
-            className="custom-file-input"
-            id="customFile"
-            onChange={onChange}
-          />
-          <label className="custom-file-label" value="dhde">
-            {test}
-          </label>
+      <div class="row">
+        <div className="input-field col s12">
+          <textarea
+            className="materialize-textarea"
+            data-length="120"
+            rows="5"
+            id="comment"
+            required
+            value={description}
+            onChange={handleDescription}
+          ></textarea>
+
+          <label for="textarea2">Description</label>
         </div>
       </div>
+      <form action="#">
+        <div class="file-field input-field" style={{}}>
+          <div
+            class="btn"
+            style={{
+              //lineHeight: "2",
+              // borderRadius: "3px",
+              letterSpacing: "1.5px",
+
+              backgroundColor: "#26A69A",
+              color: "#ffffff",
+            }}
+          >
+            <span>File</span>
+            <input type="file" onChange={onChange} />
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" />
+          </div>
+        </div>
+      </form>
       <button
         type="submit"
-        className="btn btn-primary w-100"
+        className="btn btn-large waves-effect waves-light w-100"
+        style={{
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          marginTop: "1rem",
+          backgroundColor: "#26A69A",
+          color: "#ffffff",
+        }}
         onClick={onSubmit}
       >
         Create

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+//nnimport "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
@@ -8,7 +8,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import store from "./store";
 import Navbar from "./components/navbar.component";
-import CreateUser from "./components/create-user.component";
+
 import ShowProduct from "./components/productpage.component";
 import Product from "./components/product.component";
 import CreateProduct from "./components/create-product.component";
@@ -48,19 +48,17 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <div className="mx-sm-5">
-          <br />
-          <Route exact path="/" component={Home} />
-          <Route path="/create" component={CreateProduct} />
-          <Route exact path="/products" component={ShowProduct} />
-          <Route path="/user" component={CreateUser} />
-          <Route path="/products/:id" component={Product} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Switch>
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          </Switch>
-        </div>
+
+        <Route exact path="/" component={Home} />
+        <Route path="/create" component={CreateProduct} />
+        <Route exact path="/products" component={ShowProduct} />
+
+        <Route path="/products/:id" component={Product} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        <Switch>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        </Switch>
       </Router>
     </Provider>
   );
