@@ -15,5 +15,5 @@ Technical specifications
 
 We will be using the MERN stack (MongoDB Express React Node) for this project. Redux is used for state management.
 
-Mid course screecast: https://liuonline-my.sharepoint.com/:v:/g/personal/hanbe563_student_liu_se/EaM5PTsvyy9MpK5WLXZQyZIBSB_wK_gSo4X499g3yffWGA?e=2bUd6J
+Mid course screecast: [text](https://liuonline-my.sharepoint.com/:v:/g/personal/hanbe563_student_liu_se/EaM5PTsvyy9MpK5WLXZQyZIBSB_wK_gSo4X499g3yffWGA?e=2bUd6J)
 
