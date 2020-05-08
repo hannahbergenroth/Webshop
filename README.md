@@ -8,8 +8,8 @@ We want to create a webshop, in our application we should be able to
 *  show products
 *  register users
 *  log in/out (access of protected pages should only be accessible to logged in users)
-*  Add products to shopping cart
-*  Payment 
+*  add products to shopping cart
+*  payment 
 
 Technical specifications
 
