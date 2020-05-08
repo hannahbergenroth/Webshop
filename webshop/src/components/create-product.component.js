@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-const url = "	https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
-const preset = "default";
+
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
+const CLOUDINARY_UPLOAD_PRESET = "dkxnewrs";
 
 export default function Example() {
   const [test, settest] = useState("Choose image");
@@ -10,7 +11,7 @@ export default function Example() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const onChange = (e) => {
     setImage(e.target.files[0]);
@@ -22,37 +23,31 @@ export default function Example() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", image);
-    formData.append("upload_preset", preset);
-    try {
-      setLoading(true);
-      const res = await axios.post(url, formData);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
-      const imageUrl = res.data.secure_url;
+    fetch(CLOUDINARY_URL, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.secure_url !== "") {
+          const uploadedFileUrl = data.secure_url;
 
-      const newProduct = {
-        name: title,
-        description: description,
-        price: price,
-        imageUrl: imageUrl,
-      };
+          const newProduct = {
+            name: title,
+            description: description,
+            price: price,
+            imageUrl: uploadedFileUrl,
+          };
+          axios
+            .post("http://localhost:5000/products/add", newProduct)
+            .then((res) => console.log(res.data));
 
-      console.log(newProduct);
-
-      axios
-        .post("http://localhost:5000/products/add", newProduct)
-        .then((res) => console.log(res.data));
-
-      // console.log(imageUrl, title, price, description);
-      // await axios.post("http://localhost:5000/products/add", newProduct);
-      // setLoading(false);
-    } catch (err) {
-      console.error(err);
-    }
-    setTitle("");
-    setPrice("");
-    setDescription("");
-    setImage("");
-    settest("Choose image");
+          window.location.href = "http://localhost:3000/create";
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleTitle = (e) => {
