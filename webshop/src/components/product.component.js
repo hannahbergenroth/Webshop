@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 //import { Link } from "react-router-dom";
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 import axios from "axios";
-import img from "./hejj.png";
+import img from "./bild1.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { Carousel } from "react-responsive-carousel";
@@ -40,13 +40,13 @@ class Product extends Component {
         <div className="row">
           <Carousel className="w-50">
             <div>
-              <img src={img} />
+              <img src={img} alt="" />
             </div>
             <div>
-              <img src={img} />
+              <img src={img} alt="" />
             </div>
             <div>
-              <img src={img} />
+              <img src={img} alt="" />
             </div>
           </Carousel>
           <div className="w-50 p-3">

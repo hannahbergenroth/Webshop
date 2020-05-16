@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 export default class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+      <nav
+        className="navbar navbar-dark bg-dark navbar-expand-lg"
+        style={{ height: "79px" }}
+      >
         <Link to="/" className="navbar-brand">
           Webshop
         </Link>
@@ -20,9 +23,15 @@ export default class Navbar extends Component {
                 Show products
               </Link>
             </li>
+
             <li className="navbar-item">
-              <Link to="/user" className="nav-link">
-                Create User
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
+            <li className="navbar-item">
+              <Link to="/login" className="nav-link">
+                Login
               </Link>
             </li>
           </ul>

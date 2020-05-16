@@ -6,21 +6,19 @@ const productSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
-      unique: true,
       trim: true,
-      minlength: 3,
     },
     description: {
       type: String,
-      required: true,
       trim: true,
     },
     price: {
       type: Number,
-      required: true,
     },
     imageUrl: {
+      type: String,
+    },
+    category: {
       type: String,
     },
   },
