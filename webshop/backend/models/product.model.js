@@ -9,7 +9,6 @@ const productSchema = new Schema(
       required: true,
       unique: true,
       trim: true,
-      minlength: 3,
     },
     description: {
       type: String,

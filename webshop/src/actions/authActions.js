@@ -1,7 +1,9 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
   axios
@@ -14,6 +16,20 @@ export const registerUser = (userData, history) => (dispatch) => {
       })
     );
 };
+
+// Create Product
+export const createProduct = (newProduct, history) => (dispatch) => {
+  axios
+    .post("http://localhost:5000/products/add", newProduct)
+    .then((res) => history.push("/products")) // re-direct to products on successful register
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
 // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
   axios

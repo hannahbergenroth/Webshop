@@ -18,12 +18,6 @@ import Login from "./components/auth/login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 
-//import React, { useState, useEffect } from 'react';
-//import axios from 'axios';
-//import loadingGif from './spinner.gif';
-const url = "https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
-const preset = "ml_default";
-
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth

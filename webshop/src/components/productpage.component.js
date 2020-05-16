@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
 //import Pagination from "react-js-pagination";
@@ -189,7 +189,7 @@ export default class ShowProduct extends Component {
   }
 
   render() {
-    const { products, todos, activePage, limit } = this.state;
+    const { products, activePage, limit } = this.state;
 
     // Logic for displaying products
     const indexOfLastProduct = activePage * limit;
