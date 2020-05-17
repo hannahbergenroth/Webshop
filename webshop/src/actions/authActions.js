@@ -17,7 +17,7 @@ export const registerUser = (userData, history) => (dispatch) => {
     );
 };
 
-// Create Product
+// Register Product
 export const createProduct = (newProduct, history) => (dispatch) => {
   axios
     .post("http://localhost:5000/products/add", newProduct)

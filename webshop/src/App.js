@@ -17,6 +17,8 @@ import Register from "./components/auth/register";
 import Login from "./components/auth/login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Cart from "./components/cart/shoppingcart.component";
+import Prod from "./components/productlisttest";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -44,7 +46,7 @@ function App() {
         <Navbar />
 
         <Route exact path="/" component={Home} />
-        <Route path="/create" component={CreateProduct} />
+        <PrivateRoute path="/create" component={CreateProduct} />
         <Route exact path="/products" component={ShowProduct} />
 
         <Route path="/products/:id" component={Product} />
@@ -52,6 +54,8 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/my-cart" component={Cart} />
+          <Route path="/producten" component={Prod} />
         </Switch>
       </Router>
     </Provider>

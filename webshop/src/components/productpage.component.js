@@ -4,44 +4,48 @@ import axios from "axios";
 import queryString from "query-string";
 //import Pagination from "react-js-pagination";
 import bild from "./bild1.png";
+import { addToCart } from "../actions/cartActions";
+import { connect } from "react-redux";
 
 const Product = (props) => (
   //<tr>
   //<td className="w-20">{props.product.name}</td>
-  <Link to={"/products/" + props.product._id}>
-    <div
-      className=""
-      style={{
-        height: "429px",
-        width: "276px",
-        display: "inline-block",
-        padding: "3px",
-      }}
-    >
-      <img
-        src={props.product.imageUrl}
-        style={{ height: "368px" }}
-        className="card-img-top"
-        alt="..."
-      />
-      <div className="card-body" style={{ padding: "0" }}>
-        <p
-          className=""
-          style={{
-            color: "#333333",
-            marginTop: "8px",
-            marginBottom: "0",
-            textAlign: "left",
-          }}
-        >
-          {props.product.name}
-        </p>
-        <p className="" style={{ color: "#777777", textAlign: "left" }}>
-          EUR {props.product.price}
-        </p>
-      </div>
+
+  <div
+    className=""
+    style={{
+      height: "429px",
+      width: "276px",
+      display: "inline-block",
+      padding: "3px",
+    }}
+  >
+    <img
+      src={props.product.imageUrl}
+      style={{ height: "368px" }}
+      className="card-img-top"
+      alt="..."
+    />
+    <div className="card-body" style={{ padding: "0" }}>
+      <p
+        className=""
+        style={{
+          color: "#333333",
+          marginTop: "8px",
+          marginBottom: "0",
+          textAlign: "left",
+        }}
+      >
+        {props.product.name}
+      </p>
+      <p className="" style={{ color: "#777777", textAlign: "left" }}>
+        EUR {props.product.price}
+      </p>
+      <a onClick={(e) => this.props.addToCart(props.product, props.product)}>
+        Add to cart
+      </a>
     </div>
-  </Link>
+  </div>
 
   //<td className="w-20">{props.product.description}</td>
   // <td className="w-20">{props.product.price}</td>
@@ -63,7 +67,7 @@ const Product = (props) => (
   //</tr>
 );
 
-export default class ShowProduct extends Component {
+class ShowProduct extends Component {
   constructor(props) {
     super(props);
     this.deleteProduct = this.deleteProduct.bind(this);
@@ -110,6 +114,10 @@ export default class ShowProduct extends Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  addToCart(e) {
+    console.log("TJATJA");
   }
 
   deleteProduct(id) {
@@ -200,12 +208,13 @@ export default class ShowProduct extends Component {
     console.log(indexOfFirstProduct, indexOfLastProduct);
 
     var renderproducts = [];
-    renderproducts = currentProducts.map((producten, index) => {
+    renderproducts = currentProducts.map((producten) => {
       return (
         <Product
           product={producten}
           deleteProduct={this.deleteProduct}
-          key={index}
+          onClick={(e) => this.props.handleAddToCart(e, producten)}
+          key={producten._id}
         />
       );
     });
@@ -291,3 +300,8 @@ export default class ShowProduct extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  cartItems: state.cart.items,
+});
+export default connect(mapStateToProps, { addToCart })(ShowProduct);
