@@ -13,28 +13,14 @@ class Item extends Component {
   }
 
   handleChange = (e) => {
-    if (e.target.value <= 0) {
-      alert("Quantity must be greater than or equal to 1");
-
-      return;
-    }
-
-    if (e.target.value > this.props.item.product.amount) {
-      alert("You have exceeded the available items of this product!");
-
-      return;
-    }
-
     if (this.state.quantity != e.target.value) {
       this.setState({
         quantity: e.target.value,
         btnVisible: true,
       });
     }
-  };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+    
 
     this.props.updateCartQuantity(
       this.props.item.product._id,
@@ -44,6 +30,14 @@ class Item extends Component {
     this.setState({
       btnVisible: false,
     });
+
+    
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+
   };
 
   handleRemove = (e) => {
@@ -54,21 +48,22 @@ class Item extends Component {
     const { item } = this.props;
 
     return (
-      <div className="row">
-        <div className="col-xs-2">
-          <img className="img-responsive" src={item.product.image} />
+      <div className="row" style= {{display: 'flex', alignItems: 'center'}}>
+
+        <div className="col-xs-2" style= {{marginRight: 5}}>
+          <img className="img-responsive" src={item.product.imageUrl} style={{ maxWidth:180 }} />
         </div>
         <div className="col-xs-4">
-          <h4 className="product-name">
-            <strong>{item.product.title}</strong>
-          </h4>
+          <h5 className="product-name">
+            {item.product.name}
+          </h5>
         </div>
         <div className="col-xs-6">
           <div className="col-xs-3 text-right">
             <h6>
-              <strong>
-                {item.product.price} <span className="text-muted">x</span>
-              </strong>
+             
+            <span className="text-muted">€</span> {item.product.price} 
+             
             </h6>
           </div>
           <form onSubmit={this.handleSubmit}>
@@ -81,25 +76,18 @@ class Item extends Component {
               />
             </div>
 
-            {this.state.btnVisible ? (
-              <div className="col-xs-2">
-                <button type="submit" className="btn btn-info">
-                  Update
-                </button>
-              </div>
-            ) : null}
-
-            <div className="col-xs-2">
-              <button
-                type="button"
-                onClick={this.handleRemove}
-                className="btn btn-link btn-xs"
-              >
-                <span className="glyphicon glyphicon-trash"> </span>
-              </button>
-            </div>
+           
           </form>
         </div>
+
+        <button className="float-right"
+                type="button"
+                onClick={this.handleRemove}
+                className="btn btn-info"
+                
+              >
+                 Delete
+              </button>
       </div>
     );
   }

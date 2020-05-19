@@ -6,9 +6,14 @@ class Cart extends Component {
   render() {
     let total = 0;
 
+    this.props.cartUpdated();
+
+    const { user } = this.props;
+
     this.props.cart.map(
       (item) => (total += item.product.price * item.quantity)
     );
+
 
     const cart =
       this.props.cart.length > 0 ? (
@@ -69,6 +74,9 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
   return {
     cart: state.cart.cart,
+    cartUpdated: () => {
+      return true;
+    },
   };
 };
 

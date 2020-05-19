@@ -69,12 +69,13 @@ class Product extends Component {
               href="#"
               onClick={this.addToCart}
               className="btn btn-sm btn-primary float-right"
+              style={{ width: "100%" }}
             >
               Add to cart
             </a>
           ) : null}
           {!this.props.auth.isAuthenticated ? (
-            <Link to="/login" className="btn btn-sm btn-primary float-right">
+            <Link to="/login" className="btn btn-sm btn-primary float-right" style={{ width: "100%" }}>
               Add to cart
             </Link>
           ) : null}

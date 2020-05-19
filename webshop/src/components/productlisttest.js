@@ -11,12 +11,7 @@ class ProductList extends Component {
   }
 
   addToCart = (product) => {
-    console.log(product.id, product.key);
-    if (this.props.auth.isAuthenticated) {
-      console.log("yeyyy");
-    } else {
-      console.log("NOOOOO");
-    }
+
     this.props.addToCart(product);
   };
 

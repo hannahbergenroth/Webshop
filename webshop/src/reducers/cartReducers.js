@@ -18,17 +18,10 @@ const cartReducer = (state = initialState, action) => {
         (item) => item.product._id == action.payload.productId
       );
 
-      let newCart = cart.filter(
-        (item) => item.product._id != action.payload.productId
-      );
-
       item.quantity = action.payload.quantity;
-
-      newCart.push(item);
 
       return {
         ...state,
-        cart: newCart,
       };
 
     case "REMOVE_FROM_CART":
