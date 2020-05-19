@@ -16,7 +16,7 @@ class Cart extends Component {
           <div className="panel-body">
             {this.props.cart.map((item) => {
               return (
-                <div key={item.product.id}>
+                <div key={item.product._id}>
                   <Item item={item} />
                   <hr />
                 </div>

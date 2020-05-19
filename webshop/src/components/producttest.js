@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
 class Product extends Component {
   state = {
@@ -19,36 +23,71 @@ class Product extends Component {
     const { product } = this.props;
 
     return (
-      <div className="col-md-3">
-        <figure className="card card-product">
-          <div className="img-wrap">
-            <img className="img-responsive" src={product.image} />
-          </div>
-          <figcaption className="info-wrap">
-            <h4 className="title">{product.title}</h4>
-            <p className="desc">{product.description}</p>
-          </figcaption>
-          <div className="bottom-wrap">
-            {this.state.inCart ? (
-              <span className="btn btn-success">Added to cart</span>
-            ) : (
-              <a
-                href="#"
-                onClick={this.addToCart}
-                className="btn btn-sm btn-primary float-right"
-              >
-                Add to cart
-              </a>
-            )}
+      <div
+        className=""
+        style={{
+          //height: "429px",
+          height: "529px",
+          width: "33%",
+          display: "inline-block",
+          padding: "3px",
+        }}
+      >
+        <img
+          src={product.imageUrl}
+          style={{ height: "368px" }}
+          className="card-img-top"
+          alt="..."
+        />
+        <div className="card-body" style={{ padding: "0" }}>
+          <p
+            className=""
+            style={{
+              color: "#333333",
+              marginTop: "8px",
+              marginBottom: "0",
+              textAlign: "left",
+            }}
+          >
+            {product.name}
+          </p>
+          <p className="" style={{ color: "#777777", textAlign: "left" }}>
+            EUR {product.price}
+          </p>
 
-            <div className="price-wrap h5">
-              <span className="price-new">${product.price}</span>
-            </div>
-          </div>
-        </figure>
+          {this.props.auth.isAuthenticated && this.state.inCart ? (
+            <span
+              className="btn btn-success"
+              style={{ width: "100%" }}
+              disabled
+            >
+              Added to cart
+            </span>
+          ) : null}
+          {this.props.auth.isAuthenticated && !this.state.inCart ? (
+            <a
+              href="#"
+              onClick={this.addToCart}
+              className="btn btn-sm btn-primary float-right"
+            >
+              Add to cart
+            </a>
+          ) : null}
+          {!this.props.auth.isAuthenticated ? (
+            <Link to="/login" className="btn btn-sm btn-primary float-right">
+              Add to cart
+            </Link>
+          ) : null}
+        </div>
       </div>
     );
   }
 }
 
-export default Product;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default connect(mapStateToProps)(Product);

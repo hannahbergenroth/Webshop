@@ -55,8 +55,8 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/my-cart" component={Cart} />
-          <Route path="/producten" component={Prod} />
         </Switch>
+        <Route path="/producten" component={Prod} />
       </Router>
     </Provider>
   );
