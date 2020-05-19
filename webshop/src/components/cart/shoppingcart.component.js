@@ -14,7 +14,6 @@ class Cart extends Component {
       (item) => (total += item.product.price * item.quantity)
     );
 
-
     const cart =
       this.props.cart.length > 0 ? (
         <div>
