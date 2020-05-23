@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createProduct } from "../actions/authActions";
+import { createProduct } from "../actions/productActions";
 import classnames from "classnames";
 
 const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/du8rximeo/image/upload";
@@ -32,23 +32,32 @@ class CreateProduct extends Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      // errors.name = "",
+      // errors.price
+    });
+
+    console.log(this.state.errors.name);
+  }
+  /*
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.errors !== prevState.errors) {
+      return { errors: nextProps.errors }; // <- this is setState equivalent
+    }
+    return null;
+  }*/
+
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
   onChangeImage = (e) => {
     this.setState({ image: e.target.files[0] });
-    console.log(e.target.files[0]);
   };
 
   onSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      this.state.title,
-      this.state.price,
-      this.state.description,
-      this.state.image
-    );
 
     const formData = new FormData();
     formData.append("file", this.state.image);

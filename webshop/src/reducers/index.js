@@ -9,5 +9,4 @@ export default combineReducers({
   errors: errorReducer,
   cart: cartReducer,
   product: productReducer,
-  products: productReducer,
 });

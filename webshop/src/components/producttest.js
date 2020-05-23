@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
 
 class Product extends Component {
   state = {
@@ -24,22 +22,28 @@ class Product extends Component {
 
     return (
       <div
-        className=""
+        className="card"
         style={{
           //height: "429px",
-          height: "529px",
-          width: "33%",
+          height: "520px",
+          width: "32%",
           display: "inline-block",
-          padding: "3px",
+          margin: "6px",
+          border: "0px",
         }}
       >
         <img
           src={product.imageUrl}
-          style={{ height: "368px" }}
+          style={{ height: "320px", padding: "2px" }}
           className="card-img-top"
           alt="..."
         />
-        <div className="card-body" style={{ padding: "0" }}>
+        <div className="card-content">
+          <span className="card-title activator grey-text text-darken-4">
+            {product.name}
+            <i className="material-icons right">more_vert</i>
+          </span>
+
           <p
             className=""
             style={{
@@ -51,7 +55,14 @@ class Product extends Component {
           >
             {product.name}
           </p>
-          <p className="" style={{ color: "#777777", textAlign: "left" }}>
+          <p
+            className=""
+            style={{
+              color: "#777777",
+              textAlign: "left",
+              marginBottom: "10px",
+            }}
+          >
             EUR {product.price}
           </p>
 
@@ -75,10 +86,21 @@ class Product extends Component {
             </a>
           ) : null}
           {!this.props.auth.isAuthenticated ? (
-            <Link to="/login" className="btn btn-sm btn-primary float-right" style={{ width: "100%" }}>
+            <Link
+              to="/login"
+              className="btn btn-sm btn-primary float-right"
+              style={{ width: "100%" }}
+            >
               Add to cart
             </Link>
           ) : null}
+        </div>
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">
+            {product.name}
+            <i className="material-icons right">close</i>
+          </span>
+          <p>{product.description}</p>
         </div>
       </div>
     );

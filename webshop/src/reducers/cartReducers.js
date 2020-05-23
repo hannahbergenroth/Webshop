@@ -15,7 +15,7 @@ const cartReducer = (state = initialState, action) => {
       };
     case "UPDATE_CART_QUANTITY":
       let item = cart.find(
-        (item) => item.product._id == action.payload.productId
+        (item) => item.product._id === action.payload.productId
       );
 
       item.quantity = action.payload.quantity;
@@ -28,9 +28,16 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: cart.filter(
-          (item) => item.product._id != action.payload.productId
+          (item) => item.product._id !== action.payload.productId
         ),
       };
+
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cart: [],
+      };
+
     default:
       return state;
   }

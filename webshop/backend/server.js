@@ -44,9 +44,6 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });*/
 
-const imagesRouter = require("./routes/images");
-app.use("/images", imagesRouter);
-
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 

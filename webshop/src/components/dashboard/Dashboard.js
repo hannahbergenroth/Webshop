@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { emptyCart } from "../../actions/cartActions";
+
 class Dashboard extends Component {
   onLogoutClick = (e) => {
     e.preventDefault();
+    this.props.emptyCart();
     this.props.logoutUser();
   };
+
   render() {
     const { user } = this.props.auth;
     return (
@@ -41,4 +45,12 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, { logoutUser })(Dashboard);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: () => dispatch(logoutUser()),
+    emptyCart: () => dispatch(emptyCart()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
+import { emptyCart } from "../actions/cartActions";
 
 class Navbar extends Component {
   onLogoutClick = (e) => {
     e.preventDefault();
     this.props.logoutUser();
+    this.props.emptyCart();
   };
   render() {
     this.props.cartUpdated();
 
     let total = 0;
-
-    const { user } = this.props;
 
     this.props.cart.map(
       (item) => (total += item.product.price * item.quantity)
@@ -26,65 +26,66 @@ class Navbar extends Component {
         <Link to="/" className="navbar-brand">
           Webshop
         </Link>
-        <div className="collpase navbar-collapse">
+
+        <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul className="navbar-nav mr-auto">
-            <li className="navbar-item">
-              <Link to="/products" className="nav-link">
-                Show products
+            <li className="nav-item">
+              <Link to="/dashboard" className="nav-link">
+                Dash
               </Link>
             </li>
-
-            {this.props.auth.isAuthenticated ? (
-              <React.Fragment>
-                <li className="navbar-item">
-                  <Link to="/create" className="nav-link">
-                    Create product
-                  </Link>
-                </li>
-                <li className="navbar-item">
-                  <Link
-                    to="/"
-                    className="nav-link"
-                    onClick={this.onLogoutClick}
-                  >
-                    Logout
-                  </Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/my-cart" className="nav-link">
-                    {this.props.cart.length > 0 ? (
-                      <span className="label label-info">
-                        {this.props.cart.length} items: (${total.toFixed(2)})
-                      </span>
-                    ) : null}
-                    ShoppingCart
-                  </Link>
-                </li>
-              </React.Fragment>
-            ) : null}
-
-            {!this.props.auth.isAuthenticated ? (
-              <React.Fragment>
-                <li className="navbar-item">
-                  <Link to="/register" className="nav-link">
-                    Register
-                  </Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/login" className="nav-link">
-                    Login
-                  </Link>
-                </li>
-              </React.Fragment>
-            ) : null}
-
-            <li className="navbar-item">
+            <li className="nav-item">
               <Link to="/producten" className="nav-link">
-                Producten
+                Products
               </Link>
             </li>
+            {this.props.auth.isAuthenticated ? (
+              <li className="nav-item">
+                <Link to="/create" className="nav-link">
+                  Create product
+                </Link>
+              </li>
+            ) : null}
           </ul>
         </div>
+
+        {!this.props.auth.isAuthenticated ? (
+          <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">
+                  Register
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to="/my-cart" className="nav-link">
+                  {this.props.cart.length > 0 ? (
+                    <span className="label label-info">
+                      {this.props.cart.length} item(s): (€{total})
+                    </span>
+                  ) : (
+                    <span> Mypage</span>
+                  )}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link" onClick={this.onLogoutClick}>
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </nav>
     );
   }
@@ -100,4 +101,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: () => dispatch(logoutUser()),
+    emptyCart: () => dispatch(emptyCart()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

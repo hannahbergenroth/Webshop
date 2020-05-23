@@ -5,7 +5,7 @@ const validateCreateProduct = require("../validation/create-product");
 router.route("/").get((req, res) => {
   const pageOptions = {
     page: parseInt(req.query.page, 10) || 0,
-    limit: parseInt(req.query.limit, 10) || 5,
+    limit: parseInt(req.query.limit, 10) || 6,
   };
 
   Product.find()

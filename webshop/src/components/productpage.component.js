@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
-//import Pagination from "react-js-pagination";
-import bild from "./bild1.png";
+//import bild from "./bild1.png";
 import { addToCart } from "../actions/cartActions";
 import { connect } from "react-redux";
 
@@ -21,7 +19,7 @@ const Product = (props) => (
     }}
   >
     <img
-      src={props.product.imageUrl}
+      //  src={props.product.imageUrl}
       style={{ height: "368px" }}
       className="card-img-top"
       alt="..."
@@ -41,7 +39,10 @@ const Product = (props) => (
       <p className="" style={{ color: "#777777", textAlign: "left" }}>
         EUR {props.product.price}
       </p>
-      <a onClick={(e) => this.props.addToCart(props.product, props.product)}>
+      <a
+        href=""
+        onClick={(e) => this.props.addToCart(props.product, props.product)}
+      >
         Add to cart
       </a>
     </div>
@@ -255,7 +256,7 @@ class ShowProduct extends Component {
           class="jumbotron jumbotron-fluid"
           style={{ height: "330px", padding: "0" }}
         >
-          <img src={bild} alt="" style={{ width: "100%" }} />
+          <img alt="" style={{ width: "100%" }} />
         </div>
         {renderPageNumbers}
         <div className="container w-50 my-3 text-center">

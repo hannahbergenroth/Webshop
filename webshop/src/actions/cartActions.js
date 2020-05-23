@@ -26,3 +26,9 @@ export const updateCartQuantity = (productId, quantity) => {
     },
   };
 };
+
+export const emptyCart = () => {
+  return {
+    type: "EMPTY_CART",
+  };
+};

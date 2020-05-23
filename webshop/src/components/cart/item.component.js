@@ -8,36 +8,19 @@ class Item extends Component {
 
     this.state = {
       quantity: this.props.item.quantity,
-      btnVisible: false,
     };
   }
 
   handleChange = (e) => {
-    if (this.state.quantity != e.target.value) {
-      this.setState({
-        quantity: e.target.value,
-        btnVisible: true,
-      });
+    if (e.target.value < 0) {
+      return;
     }
 
-    
-
-    this.props.updateCartQuantity(
-      this.props.item.product._id,
-      this.state.quantity
-    );
-
     this.setState({
-      btnVisible: false,
+      quantity: e.target.value,
     });
 
-    
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-
+    this.props.updateCartQuantity(this.props.item.product._id, e.target.value);
   };
 
   handleRemove = (e) => {
@@ -48,46 +31,42 @@ class Item extends Component {
     const { item } = this.props;
 
     return (
-      <div className="row" style= {{display: 'flex', alignItems: 'center'}}>
-
-        <div className="col-xs-2" style= {{marginRight: 5}}>
-          <img className="img-responsive" src={item.product.imageUrl} style={{ maxWidth:180 }} />
+      <div
+        className="row"
+        style={{ alignItems: "center", position: "relative" }}
+      >
+        <div className="col s12 m6 l3" style={{}}>
+          <img
+            className="img-responsive"
+            src={item.product.imageUrl}
+            alt={""}
+            style={{ maxWidth: 180 }}
+          />
         </div>
-        <div className="col-xs-4">
-          <h5 className="product-name">
-            {item.product.name}
-          </h5>
+        <div className="col s12 m6 l3" style={{}}>
+          <h5 className="product-name">{item.product.name}</h5>
         </div>
-        <div className="col-xs-6">
-          <div className="col-xs-3 text-right">
-            <h6>
-             
-            <span className="text-muted">€</span> {item.product.price} 
-             
-            </h6>
-          </div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="col-xs-4">
-              <input
-                type="number"
-                className="form-control input-sm"
-                onChange={this.handleChange}
-                value={this.state.quantity}
-              />
-            </div>
-
-           
-          </form>
+        <div style={{ textAlign: "center" }}>€ {item.product.price}</div>
+        <div className="col s12 m6 l3" style={{}}>
+          <input
+            id="test"
+            type="number"
+            className="form-control input-sm"
+            onChange={this.handleChange}
+            value={this.state.quantity}
+            style={{ width: "20%", float: "right", textAlign: "center" }}
+          />
         </div>
-
-        <button className="float-right"
-                type="button"
-                onClick={this.handleRemove}
-                className="btn btn-info"
-                
-              >
-                 Delete
-              </button>
+        <div className="col s12 m6 l3" style={{}}>
+          <button
+            type="button"
+            onClick={this.handleRemove}
+            className="btn btn-info"
+            style={{ width: "100%" }}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     );
   }

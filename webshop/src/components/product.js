@@ -24,7 +24,7 @@ class Product extends Component {
     const { product } = this.props;
     return (
       <div
-        className=""
+        className="card"
         style={{
           //height: "429px",
           height: "529px",
@@ -39,7 +39,19 @@ class Product extends Component {
           className="card-img-top"
           alt="..."
         />
-        <div className="card-body" style={{ padding: "0" }}>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">
+            Card Title<i class="material-icons right">more_vert</i>
+          </span>
+          <p>
+            <a href="#">This is a link</a>
+          </p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">
+            Card Title<i class="material-icons right">close</i>
+          </span>
+
           <p
             className=""
             style={{
