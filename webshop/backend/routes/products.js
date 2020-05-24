@@ -3,14 +3,7 @@ let Product = require("../models/product.model");
 const validateCreateProduct = require("../validation/create-product");
 
 router.route("/").get((req, res) => {
-  const pageOptions = {
-    page: parseInt(req.query.page, 10) || 0,
-    limit: parseInt(req.query.limit, 10) || 6,
-  };
-
   Product.find()
-    //.skip(pageOptions.page * pageOptions.limit)
-    //.limit(pageOptions.limit)
     .then((products) => res.json(products))
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -35,10 +28,15 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").get((req, res) => {
-  Product.findById(req.params.id)
-    .then((product) => res.json(product))
-    .catch((err) => res.status(400).json("Error: " + err));
+router.route("/:query").get((req, res) => {
+  var searchQuery = {};
+  searchQuery.name = { $regex: req.params.query, $options: "i" };
+  Product.find(searchQuery, function (error, product) {
+    if (error || product === null) {
+      return res.status(500).send(error);
+    }
+    return res.status(200).send(product);
+  });
 });
 
 router.route("/:id").delete((req, res) => {

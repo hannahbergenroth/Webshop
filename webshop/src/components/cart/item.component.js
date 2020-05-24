@@ -46,7 +46,7 @@ class Item extends Component {
         <div className="col s12 m6 l3" style={{}}>
           <h5 className="product-name">{item.product.name}</h5>
         </div>
-        <div style={{ textAlign: "center" }}>€ {item.product.price}</div>
+        <div style={{ textAlign: "center" }}>€ {item.product.price}/item</div>
         <div className="col s12 m6 l3" style={{}}>
           <input
             id="test"
@@ -62,7 +62,7 @@ class Item extends Component {
             type="button"
             onClick={this.handleRemove}
             className="btn btn-info"
-            style={{ width: "100%" }}
+            style={{ width: "100%", backgroundColor: "#e57373" }}
           >
             Delete
           </button>

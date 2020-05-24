@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
@@ -8,16 +7,13 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import store from "./store";
 import Navbar from "./components/navbar.component";
 
-import ShowProduct from "./components/productpage.component";
-import Product from "./components/product.component";
+import Product from "./components/productpage";
 import CreateProduct from "./components/create-product.component";
 import Home from "./components/homepage";
 import Register from "./components/auth/register";
 import Login from "./components/auth/login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/shoppingcart.component";
-import Prod from "./components/productlisttest";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -46,16 +42,13 @@ function App() {
 
         <Route exact path="/" component={Home} />
         <PrivateRoute path="/create" component={CreateProduct} />
-        <Route exact path="/products" component={ShowProduct} />
 
-        <Route path="/products/:id" component={Product} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Switch>
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/my-cart" component={Cart} />
         </Switch>
-        <Route path="/producten" component={Prod} />
+        <Route path="/products" component={Product} />
       </Router>
     </Provider>
   );

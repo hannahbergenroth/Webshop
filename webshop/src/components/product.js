@@ -1,55 +1,51 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addToCart } from "../actions/cartActions";
-import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
-    this.state = {
-      product: this.props.product,
-    };
-  }
+  state = {
+    inCart: this.props.inCart,
+  };
 
-  onClick = (e) => {
-    const newProduct = {};
-    //console.log("TJA", this.state.product);
-    this.props.addToCart(this.state.product);
+  addToCart = (e) => {
+    e.preventDefault();
+
+    this.props.addToCart(this.props.product);
+
+    this.setState({
+      inCart: true,
+    });
   };
 
   render() {
     const { product } = this.props;
+
+    let newText = product.description.split("\\n").map((item, i) => {
+      return <p key={i}> {item} </p>;
+    });
+
     return (
       <div
         className="card"
         style={{
           //height: "429px",
-          height: "529px",
-          width: "276px",
+          height: "630px",
+          width: "32%",
           display: "inline-block",
-          padding: "3px",
+          margin: "6px",
+          border: "0px",
         }}
       >
         <img
           src={product.imageUrl}
-          style={{ height: "368px" }}
+          style={{ padding: "2px" }}
           className="card-img-top"
           alt="..."
         />
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">
-            Card Title<i class="material-icons right">more_vert</i>
-          </span>
-          <p>
-            <a href="#">This is a link</a>
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">
-            Card Title<i class="material-icons right">close</i>
+        <div className="card-content">
+          <span className="card-title activator grey-text text-darken-4">
+            {product.name}
+            <i className="material-icons right">more_vert</i>
           </span>
 
           <p
@@ -63,52 +59,63 @@ class Product extends Component {
           >
             {product.name}
           </p>
-          <p className="" style={{ color: "#777777", textAlign: "left" }}>
+          <p
+            className=""
+            style={{
+              color: "#777777",
+              textAlign: "left",
+              marginBottom: "10px",
+            }}
+          >
             EUR {product.price}
           </p>
-          {this.state.inCart ? (
-            <a
-              //onClick={}
-              className="btn btn-sm btn-primary"
+
+          {this.props.auth.isAuthenticated && this.state.inCart ? (
+            <span
+              className="btn btn-success"
+              style={{ width: "100%" }}
+              disabled
             >
               Added to cart
-            </a>
-          ) : (
+            </span>
+          ) : null}
+          {this.props.auth.isAuthenticated && !this.state.inCart ? (
             <a
               href="#"
-              onClick={this.onClick}
-              className="btn btn-sm btn-primary"
+              onClick={this.addToCart}
+              className="btn btn-sm btn-primary "
+              style={{ width: "100%", backgroundColor: "#81c784" }}
             >
               Add to cart
             </a>
-          )}
+          ) : null}
+          {!this.props.auth.isAuthenticated ? (
+            <Link
+              to="/login"
+              className="btn btn-sm btn-primary "
+              style={{ width: "100%", backgroundColor: "#81c784" }}
+            >
+              Add to cart
+            </Link>
+          ) : null}
+        </div>
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">
+            Description
+            <i className="material-icons right">close</i>
+          </span>
+
+          {newText}
         </div>
       </div>
-
-      //<td className="w-20">{props.product.description}</td>
-      // <td className="w-20">{props.product.price}</td>
-      //<td className="w-20">
-      // <img src={props.product.imageUrl} width="50" alt="hej" />
-      //</td>
-
-      //<td>
-      // <Link to={"/products/" + props.product._id}>Open</Link> |{" "}
-      //<a
-      //href="#"
-      //onClick={() => {
-      // props.deleteProduct(props.product._id);
-      //}}
-      //>
-      //delete
-      //</a>
-      //</td>
-      //</tr>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  products: state.product,
-});
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
 
-export default connect(mapStateToProps, { addToCart })(withRouter(Product));
+export default connect(mapStateToProps)(Product);

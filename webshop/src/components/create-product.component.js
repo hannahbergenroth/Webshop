@@ -160,7 +160,7 @@ class CreateProduct extends Component {
 
         <button
           type="submit"
-          className="btn btn-large waves-effect waves-light w-100"
+          className="btn btn-large waves-effect waves-light "
           style={{
             borderRadius: "3px",
             letterSpacing: "1.5px",

@@ -139,7 +139,7 @@ class Register extends Component {
                     color: "#ffffff",
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light w-100"
+                  className="btn btn-large waves-effect waves-light "
                 >
                   Sign up
                 </button>

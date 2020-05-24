@@ -20,7 +20,7 @@ class Navbar extends Component {
     );
     return (
       <nav
-        className="navbar navbar-dark bg-dark navbar-expand-lg"
+        className="navbar navbar-light blue-grey lighten-5 navbar-expand-lg"
         style={{ height: "79px" }}
       >
         <Link to="/" className="navbar-brand">
@@ -30,12 +30,7 @@ class Navbar extends Component {
         <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link to="/dashboard" className="nav-link">
-                Dash
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/producten" className="nav-link">
+              <Link to="/products" className="nav-link">
                 Products
               </Link>
             </li>
@@ -53,6 +48,16 @@ class Navbar extends Component {
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
+                <Link to="/" style={{ height: "79px" }} className="nav-link">
+                  <i
+                    class="material-icons"
+                    style={{ position: "relative", top: "6px" }}
+                  >
+                    search
+                  </i>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/register" className="nav-link">
                   Register
                 </Link>
@@ -67,6 +72,16 @@ class Navbar extends Component {
         ) : (
           <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to="/" style={{ height: "79px" }} className="nav-link">
+                  <i
+                    class="material-icons"
+                    style={{ position: "relative", top: "6px" }}
+                  >
+                    search
+                  </i>
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link to="/my-cart" className="nav-link">
                   {this.props.cart.length > 0 ? (

@@ -16,7 +16,7 @@ export const fetchProduct = () => (dispatch) => {
 export const createProduct = (newProduct, history) => (dispatch) => {
   axios
     .post("http://localhost:5000/products/add", newProduct)
-    .then((res) => history.push("/producten")) // re-direct to products on successful register
+    .then((res) => history.push("/products")) // re-direct to products on successful register
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
