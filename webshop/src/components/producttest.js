@@ -20,12 +20,16 @@ class Product extends Component {
   render() {
     const { product } = this.props;
 
+    let newText = product.description.split("\\n").map((item, i) => {
+      return <p key={i}> {item} </p>;
+    });
+
     return (
       <div
         className="card"
         style={{
           //height: "429px",
-          height: "520px",
+          height: "630px",
           width: "32%",
           display: "inline-block",
           margin: "6px",
@@ -34,7 +38,7 @@ class Product extends Component {
       >
         <img
           src={product.imageUrl}
-          style={{ height: "320px", padding: "2px" }}
+          style={{ padding: "2px" }}
           className="card-img-top"
           alt="..."
         />
@@ -100,7 +104,8 @@ class Product extends Component {
             {product.name}
             <i className="material-icons right">close</i>
           </span>
-          <p>{product.description}</p>
+
+          {newText}
         </div>
       </div>
     );

@@ -73,7 +73,7 @@ class ShowProduct extends Component {
     super(props);
     this.deleteProduct = this.deleteProduct.bind(this);
     this.handleChangea = this.handleChangea.bind(this);
-    this.handleNext = this.handleNext.bind(this);
+
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       currentProducts: [],
@@ -154,27 +154,6 @@ class ShowProduct extends Component {
         params: {
           limit: e.target.value,
           page: this.state.page,
-        },
-      })
-      .then((response) => {
-        this.setState({ products: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  handleNext() {
-    this.setState({
-      page: this.state.page + 1,
-    });
-    console.log(this.state.page, this.state.limit);
-
-    axios
-      .get("http://localhost:5000/products/", {
-        params: {
-          // page: this.state.page,
-          // limit: this.state.limit,
         },
       })
       .then((response) => {

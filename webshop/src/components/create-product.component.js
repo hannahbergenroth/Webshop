@@ -32,16 +32,7 @@ class CreateProduct extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      // errors.name = "",
-      // errors.price
-    });
-
-    console.log(this.state.errors.name);
-  }
-  /*
-  static getDerivedStateFromProps(nextProps, prevState) {
+  /*static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.errors !== prevState.errors) {
       return { errors: nextProps.errors }; // <- this is setState equivalent
     }
