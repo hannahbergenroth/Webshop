@@ -9,7 +9,6 @@ We want to create a webshop, in our application we should be able to
 *  register users
 *  log in/out (access of protected pages should only be accessible to logged in users)
 *  add products to shopping cart
-*  payment 
 
 Technical specifications
 
@@ -20,5 +19,5 @@ We will be using the MERN stack (MongoDB Express React Node) for this project. R
 [Project screencast](https://youtu.be/CpGbj2rv2j0)
 
 Individual screencasts
-[Hannah](https://youtu.be/UALph3G-0kA)
+[Hannah Bergenroth](https://youtu.be/UALph3G-0kA)
 
