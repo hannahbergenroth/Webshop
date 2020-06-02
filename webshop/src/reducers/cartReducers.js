@@ -32,12 +32,6 @@ const cartReducer = (state = initialState, action) => {
         ),
       };
 
-    case "EMPTY_CART":
-      return {
-        ...state,
-        cart: [],
-      };
-
     default:
       return state;
   }

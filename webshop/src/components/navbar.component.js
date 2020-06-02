@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
-import { emptyCart } from "../actions/cartActions";
 
 class Navbar extends Component {
   onLogoutClick = (e) => {
     e.preventDefault();
     this.props.logoutUser();
-    this.props.emptyCart();
   };
   render() {
     this.props.cartUpdated();
@@ -119,7 +117,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logoutUser: () => dispatch(logoutUser()),
-    emptyCart: () => dispatch(emptyCart()),
   };
 };
 

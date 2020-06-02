@@ -33,7 +33,7 @@ class Search extends React.Component {
   };
 
   fetchSearchResults = (query) => {
-    console.log(query);
+    //console.log(query);
     const searchUrl = "http://localhost:5000/products/" + query;
     if (this.cancel) {
       // Cancel the previous request before making a new request
@@ -70,7 +70,6 @@ class Search extends React.Component {
       return (
         <Product
           product={product}
-          deleteProduct={this.deleteProduct}
           addToCart={this.addToCart}
           inCart={
             this.props.cart.length > 0 &&

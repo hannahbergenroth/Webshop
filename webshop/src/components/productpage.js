@@ -21,7 +21,6 @@ class ProductPage extends Component {
   componentDidMount() {
     this.props.fetchProduct();
 
-    console.log(this.props.item);
   }
 
   addToCart = (product) => {
@@ -47,14 +46,12 @@ class ProductPage extends Component {
     const indexOfFirstProduct = indexOfLastProduct - limit;
     var currentProducts = [];
     currentProducts = item.slice(indexOfFirstProduct, indexOfLastProduct);
-    console.log("yyyy", currentProducts);
 
     var renderproducts = [];
     renderproducts = currentProducts.map((product) => {
       return (
         <Product
           product={product}
-          deleteProduct={this.deleteProduct}
           addToCart={this.addToCart}
           inCart={
             this.props.cart.length > 0 &&

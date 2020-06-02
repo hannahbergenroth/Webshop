@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -45,9 +45,9 @@ function App() {
 
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Switch>
-          <PrivateRoute path="/my-cart" component={Cart} />
-        </Switch>
+        
+        <PrivateRoute path="/my-cart" component={Cart} />
+        
         <Route path="/products" component={Product} />
       </Router>
     </Provider>
