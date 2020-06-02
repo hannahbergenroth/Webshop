@@ -20,4 +20,6 @@ We will be using the MERN stack (MongoDB Express React Node) for this project. R
 
 Individual screencasts
 [Hannah Bergenroth](https://youtu.be/UALph3G-0kA)
+[Chris Paulusson](https://youtu.be/sB_hpBvIztc)
+
 
